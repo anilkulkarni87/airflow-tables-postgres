@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>airflow Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>airflow</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Utility Tables</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Orphan Tables</h3>
+                        </div>
+                        <div class="box-body">
+                            <div id="grid" data-columns>
+                                <div class="item">
+                                    <img id="alembic_versionDegreeImg" src="diagrams/orphans/alembic_version.1degree.png" usemap="#alembic_version" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="celery_tasksetmetaDegreeImg" src="diagrams/orphans/celery_tasksetmeta.1degree.png" usemap="#celery_tasksetmeta" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="dag_codeDegreeImg" src="diagrams/orphans/dag_code.1degree.png" usemap="#dag_code" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="dag_pickleDegreeImg" src="diagrams/orphans/dag_pickle.1degree.png" usemap="#dag_pickle" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="import_errorDegreeImg" src="diagrams/orphans/import_error.1degree.png" usemap="#import_error" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="slot_poolDegreeImg" src="diagrams/orphans/slot_pool.1degree.png" usemap="#slot_pool" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="rendered_task_instance_fieldsDegreeImg" src="diagrams/orphans/rendered_task_instance_fields.1degree.png" usemap="#rendered_task_instance_fields" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="variableDegreeImg" src="diagrams/orphans/variable.1degree.png" usemap="#variable" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="serialized_dagDegreeImg" src="diagrams/orphans/serialized_dag.1degree.png" usemap="#serialized_dag" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="xcomDegreeImg" src="diagrams/orphans/xcom.1degree.png" usemap="#xcom" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="sla_missDegreeImg" src="diagrams/orphans/sla_miss.1degree.png" usemap="#sla_miss" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="task_failDegreeImg" src="diagrams/orphans/task_fail.1degree.png" usemap="#task_fail" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="ab_register_userDegreeImg" src="diagrams/orphans/ab_register_user.1degree.png" usemap="#ab_register_user" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="logDegreeImg" src="diagrams/orphans/log.1degree.png" usemap="#log" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="jobDegreeImg" src="diagrams/orphans/job.1degree.png" usemap="#job" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="celery_taskmetaDegreeImg" src="diagrams/orphans/celery_taskmeta.1degree.png" usemap="#celery_taskmeta" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="connectionDegreeImg" src="diagrams/orphans/connection.1degree.png" usemap="#connection" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="dag_runDegreeImg" src="diagrams/orphans/dag_run.1degree.png" usemap="#dag_run" style="max-width:100%;" border="0" align="top">
+                                </div>
+                                <div class="item">
+                                    <img id="sensor_instanceDegreeImg" src="diagrams/orphans/sensor_instance.1degree.png" usemap="#sensor_instance" style="max-width:100%;" border="0" align="top">
+                                </div>
+                            </div>
+                            <map id="alembic_version" name="alembic_version">
+<area shape="rect" id="node1" href="tables/alembic_version.html" target="_top" title="alembic_version" alt="" coords="5,5,268,104">
+</map><map id="celery_tasksetmeta" name="celery_tasksetmeta">
+<area shape="rect" id="node1" href="tables/celery_tasksetmeta.html" target="_top" title="celery_tasksetmeta" alt="" coords="5,5,341,192">
+</map><map id="dag_code" name="dag_code">
+<area shape="rect" id="node1" href="tables/dag_code.html" target="_top" title="dag_code" alt="" coords="5,5,283,192">
+</map><map id="dag_pickle" name="dag_pickle">
+<area shape="rect" id="node1" href="tables/dag_pickle.html" target="_top" title="dag_pickle" alt="" coords="5,5,295,192">
+</map><map id="import_error" name="import_error">
+<area shape="rect" id="node1" href="tables/import_error.html" target="_top" title="import_error" alt="" coords="5,5,280,192">
+</map><map id="slot_pool" name="slot_pool">
+<area shape="rect" id="node1" href="tables/slot_pool.html" target="_top" title="slot_pool" alt="" coords="5,5,268,192">
+</map><map id="rendered_task_instance_fields" name="rendered_task_instance_fields">
+<area shape="rect" id="node1" href="tables/rendered_task_instance_fields.html" target="_top" title="rendered_task_instance_fields" alt="" coords="5,5,419,221">
+</map><map id="variable" name="variable">
+<area shape="rect" id="node1" href="tables/variable.html" target="_top" title="variable" alt="" coords="5,5,281,221">
+</map><map id="serialized_dag" name="serialized_dag">
+<area shape="rect" id="node1" href="tables/serialized_dag.html" target="_top" title="serialized_dag" alt="" coords="5,5,295,251">
+</map><map id="xcom" name="xcom">
+<area shape="rect" id="node1" href="tables/xcom.html" target="_top" title="xcom" alt="" coords="5,5,311,251">
+</map><map id="sla_miss" name="sla_miss">
+<area shape="rect" id="node1" href="tables/sla_miss.html" target="_top" title="sla_miss" alt="" coords="5,5,312,280">
+</map><map id="task_fail" name="task_fail">
+<area shape="rect" id="node1" href="tables/task_fail.html" target="_top" title="task_fail" alt="" coords="5,5,300,280">
+</map><map id="ab_register_user" name="ab_register_user">
+<area shape="rect" id="node1" href="tables/ab_register_user.html" target="_top" title="ab_register_user" alt="" coords="5,5,307,309">
+</map><map id="log" name="log">
+<area shape="rect" id="node1" href="tables/log.html" target="_top" title="log" alt="" coords="5,5,300,309">
+</map><map id="job" name="job">
+<area shape="rect" id="node1" href="tables/job.html" target="_top" title="job" alt="" coords="5,5,307,368">
+</map><map id="celery_taskmeta" name="celery_taskmeta">
+<area shape="rect" id="node1" href="tables/celery_taskmeta.html" target="_top" title="celery_taskmeta" alt="" coords="5,5,319,427">
+</map><map id="connection" name="connection">
+<area shape="rect" id="node1" href="tables/connection.html" target="_top" title="connection" alt="" coords="5,5,328,427">
+</map><map id="dag_run" name="dag_run">
+<area shape="rect" id="node1" href="tables/dag_run.html" target="_top" title="dag_run" alt="" coords="5,5,389,456">
+</map><map id="sensor_instance" name="sensor_instance">
+<area shape="rect" id="node1" href="tables/sensor_instance.html" target="_top" title="sensor_instance" alt="" coords="5,5,324,515">
+</map>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src=""></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

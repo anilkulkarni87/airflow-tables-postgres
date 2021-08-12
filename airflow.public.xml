@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="airflow" schema="public" type="PostgreSQL - 13.3 (Debian 13.3-1.pgdg100+1)">
+   <sequences>
+      <sequence increment="1" name="ab_permission_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_permission_view_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_permission_view_role_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_register_user_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_role_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_user_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_user_role_id_seq" startValue="1"/>
+      <sequence increment="1" name="ab_view_menu_id_seq" startValue="1"/>
+      <sequence increment="1" name="connection_id_seq" startValue="1"/>
+      <sequence increment="1" name="dag_pickle_id_seq" startValue="1"/>
+      <sequence increment="1" name="dag_run_id_seq" startValue="1"/>
+      <sequence increment="1" name="import_error_id_seq" startValue="1"/>
+      <sequence increment="1" name="job_id_seq" startValue="1"/>
+      <sequence increment="1" name="log_id_seq" startValue="1"/>
+      <sequence increment="1" name="sensor_instance_id_seq" startValue="1"/>
+      <sequence increment="1" name="slot_pool_id_seq" startValue="1"/>
+      <sequence increment="1" name="task_fail_id_seq" startValue="1"/>
+      <sequence increment="1" name="task_id_sequence" startValue="1"/>
+      <sequence increment="1" name="task_reschedule_id_seq" startValue="1"/>
+      <sequence increment="1" name="taskset_id_sequence" startValue="1"/>
+      <sequence increment="1" name="variable_id_seq" startValue="1"/>
+   </sequences>
+   <tables>
+      <table name="ab_permission" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_permission_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="permission_id" foreignKey="ab_permission_view_permission_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_permission_view"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_permission_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_permission_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="ab_permission_view" numRows="93" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_permission_view_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="permission_view_id" foreignKey="ab_permission_view_role_permission_view_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_permission_view_role"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="permission_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_permission_view_permission_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_permission"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="view_menu_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_permission_view_view_menu_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_view_menu"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_permission_view_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_permission_view_permission_id_view_menu_id_key" unique="true">
+            <column ascending="true" name="permission_id"/>
+            <column ascending="true" name="view_menu_id"/>
+         </index>
+      </table>
+      <table name="ab_permission_view_role" numRows="195" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_permission_view_role_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="permission_view_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_permission_view_role_permission_view_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_permission_view"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="role_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_permission_view_role_role_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_role"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_permission_view_role_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_permission_view_role_permission_view_id_role_id_key" unique="true">
+            <column ascending="true" name="permission_view_id"/>
+            <column ascending="true" name="role_id"/>
+         </index>
+      </table>
+      <table name="ab_register_user" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_register_user_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="first_name" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="last_name" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="username" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="password" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="email" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="registration_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="registration_hash" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_register_user_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_register_user_username_key" unique="true">
+            <column ascending="true" name="username"/>
+         </index>
+      </table>
+      <table name="ab_role" numRows="5" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_role_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="role_id" foreignKey="ab_permission_view_role_role_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_permission_view_role"/>
+            <child column="role_id" foreignKey="ab_user_role_role_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user_role"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_role_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_role_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="ab_user" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_user_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="changed_by_fk" foreignKey="ab_user_changed_by_fk_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user"/>
+            <child column="created_by_fk" foreignKey="ab_user_created_by_fk_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user"/>
+            <child column="user_id" foreignKey="ab_user_role_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user_role"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="first_name" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="last_name" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="username" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="password" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="email" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="last_login" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="login_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="fail_login_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="10" name="created_on" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="changed_on" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="created_by_fk" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_user_created_by_fk_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="changed_by_fk" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_user_changed_by_fk_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_user_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_user_email_key" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="ab_user_username_key" unique="true">
+            <column ascending="true" name="username"/>
+         </index>
+      </table>
+      <table name="ab_user_role" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_user_role_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_user_role_user_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="role_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="id" foreignKey="ab_user_role_role_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_role"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_user_role_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_user_role_user_id_role_id_key" unique="true">
+            <column ascending="true" name="user_id"/>
+            <column ascending="true" name="role_id"/>
+         </index>
+      </table>
+      <table name="ab_view_menu" numRows="54" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('ab_view_menu_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="view_menu_id" foreignKey="ab_permission_view_view_menu_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="ab_permission_view"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="ab_view_menu_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="ab_view_menu_name_key" unique="true">
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="alembic_version" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="version_num" nullable="false" remarks="" size="32" type="varchar" typeCode="12"/>
+         <primaryKey column="version_num" sequenceNumberInPK="1"/>
+         <index name="alembic_version_pkc" unique="true">
+            <column ascending="true" name="version_num"/>
+         </index>
+      </table>
+      <table name="celery_taskmeta" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="task_id" nullable="true" remarks="" size="155" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="status" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="result" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="date_done" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="traceback" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="name" nullable="true" remarks="" size="155" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="args" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="kwargs" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="worker" nullable="true" remarks="" size="155" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="retries" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="queue" nullable="true" remarks="" size="155" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="celery_taskmeta_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="celery_taskmeta_task_id_key" unique="true">
+            <column ascending="true" name="task_id"/>
+         </index>
+      </table>
+      <table name="celery_tasksetmeta" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="taskset_id" nullable="true" remarks="" size="155" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="result" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="date_done" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="celery_tasksetmeta_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="celery_tasksetmeta_taskset_id_key" unique="true">
+            <column ascending="true" name="taskset_id"/>
+         </index>
+      </table>
+      <table name="connection" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('connection_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conn_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="conn_type" nullable="false" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="host" nullable="true" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="schema" nullable="true" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="login" nullable="true" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="password" nullable="true" remarks="" size="5000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="port" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="extra" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="is_encrypted" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="is_extra_encrypted" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="connection_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="unique_conn_id" unique="true">
+            <column ascending="true" name="conn_id"/>
+         </index>
+      </table>
+      <table name="dag" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12">
+            <child column="dag_id" foreignKey="dag_tag_dag_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="dag_tag"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="is_paused" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="is_subdag" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="last_parsed_time" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="last_pickled" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="last_expired" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="scheduler_lock" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="pickle_id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="fileloc" nullable="true" remarks="" size="2000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="owners" nullable="true" remarks="" size="2000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="default_view" nullable="true" remarks="" size="25" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="schedule_interval" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="root_dag_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="15" name="next_dagrun" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="16" name="next_dagrun_create_after" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="concurrency" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="has_task_concurrency_limits" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="1"/>
+         <index name="dag_pkey" unique="true">
+            <column ascending="true" name="dag_id"/>
+         </index>
+         <index name="idx_next_dagrun_create_after" unique="false">
+            <column ascending="true" name="next_dagrun_create_after"/>
+         </index>
+         <index name="idx_root_dag_id" unique="false">
+            <column ascending="true" name="root_dag_id"/>
+         </index>
+      </table>
+      <table name="dag_code" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="fileloc_hash" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="fileloc_hash" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="serialized_dag"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="fileloc" nullable="false" remarks="" size="2000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="source_code" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="last_updated" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <primaryKey column="fileloc_hash" sequenceNumberInPK="1"/>
+         <index name="dag_code_pkey" unique="true">
+            <column ascending="true" name="fileloc_hash"/>
+         </index>
+      </table>
+      <table name="dag_pickle" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('dag_pickle_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="pickle" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="created_dttm" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pickle_hash" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="dag_pickle_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="dag_run" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('dag_run_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dag_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="execution_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="state" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="run_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="external_trigger" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="conf" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="end_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="start_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="run_type" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="10" name="last_scheduling_decision" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="dag_hash" nullable="true" remarks="" size="32" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="creating_job_id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="dag_run_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="dag_id_state" unique="false">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="state"/>
+         </index>
+         <index name="dag_run_dag_id_execution_date_key" unique="true">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+         <index name="dag_run_dag_id_run_id_key" unique="true">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="run_id"/>
+         </index>
+         <index name="idx_last_scheduling_decision" unique="false">
+            <column ascending="true" name="last_scheduling_decision"/>
+         </index>
+      </table>
+      <table name="dag_tag" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="name" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12">
+            <parent column="dag_id" foreignKey="dag_tag_dag_id_fkey" implied="false" onDeleteCascade="false" schema="public" table="dag"/>
+         </column>
+         <primaryKey column="name" sequenceNumberInPK="1"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="2"/>
+         <index name="dag_tag_pkey" unique="true">
+            <column ascending="true" name="name"/>
+            <column ascending="true" name="dag_id"/>
+         </index>
+      </table>
+      <table name="import_error" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('import_error_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="timestamp" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="filename" nullable="true" remarks="" size="1024" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="stacktrace" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="import_error_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="job" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('job_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dag_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="state" nullable="true" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="job_type" nullable="true" remarks="" size="30" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="start_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="end_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="latest_heartbeat" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="executor_class" nullable="true" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="hostname" nullable="true" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="unixname" nullable="true" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="job_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="idx_job_state_heartbeat" unique="false">
+            <column ascending="true" name="state"/>
+            <column ascending="true" name="latest_heartbeat"/>
+         </index>
+         <index name="job_type_heart" unique="false">
+            <column ascending="true" name="job_type"/>
+            <column ascending="true" name="latest_heartbeat"/>
+         </index>
+      </table>
+      <table name="log" numRows="100" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('log_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="dttm" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dag_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="task_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="event" nullable="true" remarks="" size="30" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="execution_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="owner" nullable="true" remarks="" size="500" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="extra" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="log_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="idx_log_dag" unique="false">
+            <column ascending="true" name="dag_id"/>
+         </index>
+      </table>
+      <table name="rendered_task_instance_fields" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="rendered_fields" nullable="false" remarks="" size="2147483647" type="json" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="k8s_pod_yaml" nullable="true" remarks="" size="2147483647" type="json" typeCode="1111"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="1"/>
+         <primaryKey column="task_id" sequenceNumberInPK="2"/>
+         <primaryKey column="execution_date" sequenceNumberInPK="3"/>
+         <index name="rendered_task_instance_fields_pkey" unique="true">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+      </table>
+      <table name="sensor_instance" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('sensor_instance_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="state" nullable="true" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="try_number" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="start_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="operator" nullable="false" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="op_classpath" nullable="false" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="hashcode" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="shardcode" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="poke_context" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="execution_context" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="13" name="created_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="14" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="sensor_instance_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="si_hashcode" unique="false">
+            <column ascending="true" name="hashcode"/>
+         </index>
+         <index name="si_shardcode" unique="false">
+            <column ascending="true" name="shardcode"/>
+         </index>
+         <index name="si_state_shard" unique="false">
+            <column ascending="true" name="state"/>
+            <column ascending="true" name="shardcode"/>
+         </index>
+         <index name="si_updated_at" unique="false">
+            <column ascending="true" name="updated_at"/>
+         </index>
+         <index name="ti_primary_key" unique="true">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+      </table>
+      <table name="serialized_dag" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="fileloc" nullable="false" remarks="" size="2000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="fileloc_hash" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="fileloc_hash" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" schema="public" table="dag_code"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="data" nullable="false" remarks="" size="2147483647" type="json" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="last_updated" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="'Hash not calculated yet'::character varying" digits="0" id="5" name="dag_hash" nullable="false" remarks="" size="32" type="varchar" typeCode="12"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="1"/>
+         <index name="serialized_dag_pkey" unique="true">
+            <column ascending="true" name="dag_id"/>
+         </index>
+         <index name="idx_fileloc_hash" unique="false">
+            <column ascending="true" name="fileloc_hash"/>
+         </index>
+      </table>
+      <table name="sla_miss" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email_sent" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="timestamp" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="notification_sent" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="task_id" sequenceNumberInPK="1"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="2"/>
+         <primaryKey column="execution_date" sequenceNumberInPK="3"/>
+         <index name="sla_miss_pkey" unique="true">
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+         <index name="sm_dag" unique="false">
+            <column ascending="true" name="dag_id"/>
+         </index>
+      </table>
+      <table name="slot_pool" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('slot_pool_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="pool" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="slots" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="slot_pool_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="slot_pool_pool_key" unique="true">
+            <column ascending="true" name="pool"/>
+         </index>
+      </table>
+      <table name="task_fail" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('task_fail_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="start_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="end_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="duration" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="task_fail_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="idx_task_fail_dag_task_date" unique="false">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+      </table>
+      <table name="task_instance" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12">
+            <child column="task_id" foreignKey="task_reschedule_dag_task_date_fkey" implied="false" onDeleteCascade="true" schema="public" table="task_reschedule"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12">
+            <child column="dag_id" foreignKey="task_reschedule_dag_task_date_fkey" implied="false" onDeleteCascade="true" schema="public" table="task_reschedule"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93">
+            <child column="execution_date" foreignKey="task_reschedule_dag_task_date_fkey" implied="false" onDeleteCascade="true" schema="public" table="task_reschedule"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="start_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="end_date" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="17" id="5" name="duration" nullable="true" remarks="" size="17" type="float8" typeCode="8"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="state" nullable="true" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="try_number" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="hostname" nullable="true" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="unixname" nullable="true" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="job_id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="pool" nullable="false" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="queue" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="priority_weight" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="operator" nullable="true" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="15" name="queued_dttm" nullable="true" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="pid" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="'-1'::integer" digits="0" id="17" name="max_tries" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="executor_config" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="pool_slots" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="queued_by_job_id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="external_executor_id" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <primaryKey column="task_id" sequenceNumberInPK="1"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="2"/>
+         <primaryKey column="execution_date" sequenceNumberInPK="3"/>
+         <index name="task_instance_pkey" unique="true">
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+         <index name="ti_dag_date" unique="false">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+         <index name="ti_dag_state" unique="false">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="state"/>
+         </index>
+         <index name="ti_job_id" unique="false">
+            <column ascending="true" name="job_id"/>
+         </index>
+         <index name="ti_pool" unique="false">
+            <column ascending="true" name="pool"/>
+            <column ascending="true" name="state"/>
+            <column ascending="true" name="priority_weight"/>
+         </index>
+         <index name="ti_state" unique="false">
+            <column ascending="true" name="state"/>
+         </index>
+         <index name="ti_state_lkp" unique="false">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="execution_date"/>
+            <column ascending="true" name="state"/>
+         </index>
+      </table>
+      <table name="task_reschedule" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('task_reschedule_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12">
+            <parent column="task_id" foreignKey="task_reschedule_dag_task_date_fkey" implied="false" onDeleteCascade="true" schema="public" table="task_instance"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12">
+            <parent column="dag_id" foreignKey="task_reschedule_dag_task_date_fkey" implied="false" onDeleteCascade="true" schema="public" table="task_instance"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93">
+            <parent column="execution_date" foreignKey="task_reschedule_dag_task_date_fkey" implied="false" onDeleteCascade="true" schema="public" table="task_instance"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="try_number" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="start_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="end_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="duration" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="reschedule_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="task_reschedule_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="idx_task_reschedule_dag_task_date" unique="false">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+      </table>
+      <table name="variable" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('variable_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="key" nullable="true" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="val" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="is_encrypted" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="variable_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="variable_key_key" unique="true">
+            <column ascending="true" name="key"/>
+         </index>
+      </table>
+      <table name="xcom" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="key" nullable="false" remarks="" size="512" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="value" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="timestamp" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="execution_date" nullable="false" remarks="" size="35" type="timestamptz" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="task_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="dag_id" nullable="false" remarks="" size="250" type="varchar" typeCode="12"/>
+         <primaryKey column="dag_id" sequenceNumberInPK="1"/>
+         <primaryKey column="task_id" sequenceNumberInPK="2"/>
+         <primaryKey column="key" sequenceNumberInPK="3"/>
+         <primaryKey column="execution_date" sequenceNumberInPK="4"/>
+         <index name="pk_xcom" unique="true">
+            <column ascending="true" name="dag_id"/>
+            <column ascending="true" name="task_id"/>
+            <column ascending="true" name="key"/>
+            <column ascending="true" name="execution_date"/>
+         </index>
+      </table>
+   </tables>
+</database>

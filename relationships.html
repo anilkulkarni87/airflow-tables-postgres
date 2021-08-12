@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>airflow Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>airflow</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>All Relationships</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Diagrams</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <h5>By default only columns that are primary keys, foreign keys or indexes are shown.</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#compactDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact</a></li>
+                                    <li class=""><a href="#largeDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large</a></li>
+                                    <li class=""><a href="#compactimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact Implied</a></li>
+                                    <li class=""><a href="#largeimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large Implied</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="compactDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactRelationshipsDiagram" name="compactRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/ab_permission.html" target="_top" title="ab_permission" alt="" coords="6,513,190,636">
+<area shape="rect" id="node2" href="tables/ab_permission_view.html" target="_top" title="ab_permission_view" alt="" coords="259,539,483,691">
+<area shape="rect" id="node7" href="tables/ab_view_menu.html" target="_top" title="ab_view_menu" alt="" coords="5,653,191,776">
+<area shape="rect" id="node3" href="tables/ab_permission_view_role.html" target="_top" title="ab_permission_view_role" alt="" coords="552,580,811,732">
+<area shape="rect" id="node4" href="tables/ab_role.html" target="_top" title="ab_role" alt="" coords="305,708,438,831">
+<area shape="rect" id="node5" href="tables/ab_user.html" target="_top" title="ab_user" alt="" coords="285,896,457,1131">
+<area shape="rect" id="node6" href="tables/ab_user_role.html" target="_top" title="ab_user_role" alt="" coords="595,843,767,995">
+<area shape="rect" id="node8" href="tables/dag.html" target="_top" title="dag" alt="" coords="235,345,508,521">
+<area shape="rect" id="node9" href="tables/dag_tag.html" target="_top" title="dag_tag" alt="" coords="613,316,750,439">
+<area shape="rect" id="node10" href="tables/task_instance.html" target="_top" title="task_instance" alt="" coords="267,35,476,328">
+<area shape="rect" id="node11" href="tables/task_reschedule.html" target="_top" title="task_reschedule" alt="" coords="583,5,779,211">
+</map>
+                                        <a name='diagram'><img id="compactDegreeImg" src="diagrams/summary/relationships.real.compact.png" usemap="#compactRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeRelationshipsDiagram" name="largeRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/ab_permission.html" target="_top" title="ab_permission" alt="" coords="6,1375,190,1497">
+<area shape="rect" id="node2" href="tables/ab_permission_view.html" target="_top" title="ab_permission_view" alt="" coords="259,1400,483,1552">
+<area shape="rect" id="node7" href="tables/ab_view_menu.html" target="_top" title="ab_view_menu" alt="" coords="5,1515,191,1637">
+<area shape="rect" id="node3" href="tables/ab_permission_view_role.html" target="_top" title="ab_permission_view_role" alt="" coords="552,1441,811,1593">
+<area shape="rect" id="node4" href="tables/ab_role.html" target="_top" title="ab_role" alt="" coords="305,1569,438,1692">
+<area shape="rect" id="node5" href="tables/ab_user.html" target="_top" title="ab_user" alt="" coords="285,1757,457,2232">
+<area shape="rect" id="node6" href="tables/ab_user_role.html" target="_top" title="ab_user_role" alt="" coords="595,1704,767,1856">
+<area shape="rect" id="node8" href="tables/dag.html" target="_top" title="dag" alt="" coords="235,761,508,1383">
+<area shape="rect" id="node9" href="tables/dag_tag.html" target="_top" title="dag_tag" alt="" coords="613,732,750,855">
+<area shape="rect" id="node10" href="tables/task_instance.html" target="_top" title="task_instance" alt="" coords="267,35,476,744">
+<area shape="rect" id="node11" href="tables/task_reschedule.html" target="_top" title="task_reschedule" alt="" coords="583,5,779,333">
+</map>
+                                        <a name='diagram'><img id="largeDegreeImg" src="diagrams/summary/relationships.real.large.png" usemap="#largeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="compactimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactImpliedRelationshipsDiagram" name="compactImpliedRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/ab_permission.html" target="_top" title="ab_permission" alt="" coords="6,677,190,800">
+<area shape="rect" id="node2" href="tables/ab_permission_view.html" target="_top" title="ab_permission_view" alt="" coords="259,703,483,855">
+<area shape="rect" id="node7" href="tables/ab_view_menu.html" target="_top" title="ab_view_menu" alt="" coords="5,817,191,940">
+<area shape="rect" id="node3" href="tables/ab_permission_view_role.html" target="_top" title="ab_permission_view_role" alt="" coords="552,744,811,896">
+<area shape="rect" id="node4" href="tables/ab_role.html" target="_top" title="ab_role" alt="" coords="305,872,438,995">
+<area shape="rect" id="node5" href="tables/ab_user.html" target="_top" title="ab_user" alt="" coords="285,1060,457,1295">
+<area shape="rect" id="node6" href="tables/ab_user_role.html" target="_top" title="ab_user_role" alt="" coords="595,1007,767,1159">
+<area shape="rect" id="node8" href="tables/dag.html" target="_top" title="dag" alt="" coords="235,509,508,685">
+<area shape="rect" id="node9" href="tables/dag_code.html" target="_top" title="dag_code" alt="" coords="297,345,446,463">
+<area shape="rect" id="node10" href="tables/dag_tag.html" target="_top" title="dag_tag" alt="" coords="613,480,750,603">
+<area shape="rect" id="node11" href="tables/serialized_dag.html" target="_top" title="serialized_dag" alt="" coords="591,316,772,463">
+<area shape="rect" id="node12" href="tables/task_instance.html" target="_top" title="task_instance" alt="" coords="267,35,476,328">
+<area shape="rect" id="node13" href="tables/task_reschedule.html" target="_top" title="task_reschedule" alt="" coords="583,5,779,211">
+</map>
+                                        <a name='diagram'><img id="compactimpliedDegreeImg" src="diagrams/summary/relationships.implied.compact.png" usemap="#compactImpliedRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeImpliedRelationshipsDiagram" name="largeImpliedRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/ab_permission.html" target="_top" title="ab_permission" alt="" coords="6,1603,190,1725">
+<area shape="rect" id="node2" href="tables/ab_permission_view.html" target="_top" title="ab_permission_view" alt="" coords="259,1628,483,1780">
+<area shape="rect" id="node7" href="tables/ab_view_menu.html" target="_top" title="ab_view_menu" alt="" coords="5,1743,191,1865">
+<area shape="rect" id="node3" href="tables/ab_permission_view_role.html" target="_top" title="ab_permission_view_role" alt="" coords="552,1669,811,1821">
+<area shape="rect" id="node4" href="tables/ab_role.html" target="_top" title="ab_role" alt="" coords="305,1797,438,1920">
+<area shape="rect" id="node5" href="tables/ab_user.html" target="_top" title="ab_user" alt="" coords="285,1985,457,2460">
+<area shape="rect" id="node6" href="tables/ab_user_role.html" target="_top" title="ab_user_role" alt="" coords="595,1932,767,2084">
+<area shape="rect" id="node8" href="tables/dag.html" target="_top" title="dag" alt="" coords="235,989,508,1611">
+<area shape="rect" id="node9" href="tables/dag_code.html" target="_top" title="dag_code" alt="" coords="297,761,446,943">
+<area shape="rect" id="node10" href="tables/dag_tag.html" target="_top" title="dag_tag" alt="" coords="613,960,750,1083">
+<area shape="rect" id="node11" href="tables/serialized_dag.html" target="_top" title="serialized_dag" alt="" coords="591,703,772,943">
+<area shape="rect" id="node12" href="tables/task_instance.html" target="_top" title="task_instance" alt="" coords="267,35,476,744">
+<area shape="rect" id="node13" href="tables/task_reschedule.html" target="_top" title="task_reschedule" alt="" coords="583,5,779,333">
+</map>
+                                        <a name='diagram'><img id="largeimpliedDegreeImg" src="diagrams/summary/relationships.implied.large.png" usemap="#largeImpliedRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="relationships.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>
